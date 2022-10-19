@@ -1,26 +1,31 @@
+import 'dart:io';
+
 import 'package:app_restoran/widget/multi_platform.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
+import 'package:provider/provider.dart';
 
-class SettingResto extends StatelessWidget {
-  static const String settingTitle = 'Settings';
+import '../provider/provider_scheduling_resto.dart';
+import '../widget/custom_dialog.dart';
 
-  const SettingResto({Key? key}) : super(key: key);
+class SettingsResto extends StatelessWidget {
+  static const String settingsTitle = 'Settings';
 
-  Widget _androidStyle(BuildContext context) {
+  const SettingsResto({Key? key}) : super(key: key);
+
+  Widget _buildAndroid(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(settingTitle),
+        title: const Text(settingsTitle),
       ),
       body: _buildList(context),
     );
   }
 
-  Widget _iosStyle(BuildContext context) {
+  Widget _buildIos(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: const CupertinoNavigationBar(
-        middle: Text(settingTitle),
+        middle: Text(settingsTitle),
       ),
       child: _buildList(context),
     );
@@ -31,52 +36,35 @@ class SettingResto extends StatelessWidget {
       children: [
         Material(
           child: ListTile(
-            title: const Text('Mode Gelap'),
+            title: const Text('Dark Theme'),
             trailing: Switch.adaptive(
-              value: false,
+              value: false, //provider.isDarkTheme,
               onChanged: (value) {
-                defaultTargetPlatform == TargetPlatform.iOS
-                    ? showCupertinoDialog(
-                        context: context,
-                        barrierDismissible: true,
-                        builder: (context) {
-                          return CupertinoAlertDialog(
-                            title: const Text('Coming Soon!!'),
-                            content: const Text(
-                                'Fitur lagi dibuat oleh Programmernya, hehe..'),
-                            actions: [
-                              CupertinoDialogAction(
-                                child: const Text('Oke deh'),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                              ),
-                            ],
-                          );
-                        },
-                      )
-                    : showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: const Text('Coming Soon!!'),
-                            content: const Text(
-                                'Fitur lagi dibuat oleh Programmernya, hehe..'),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: const Text('Oke deh'),
-                              ),
-                            ],
-                          );
-                        },
-                      );
+                customDialog(context); //provider.enableDarkTheme(value);
               },
             ),
           ),
-        )
+        ),
+        Material(
+          child: ListTile(
+            title: const Text('Scheduling Resto'),
+            trailing: Consumer<SchedulingProvider>(
+              builder: (context, scheduled, _) {
+                return Switch.adaptive(
+                  value: scheduled.isScheduled, //provider.isDailyNewsActive,
+                  onChanged: (value) async {
+                    if (Platform.isIOS) {
+                      customDialog(context);
+                    } else {
+                      scheduled.scheduledNews(value);
+                      //provider.enableDailyNews(value);
+                    }
+                  },
+                );
+              },
+            ),
+          ),
+        ),
       ],
     );
   }
@@ -84,8 +72,8 @@ class SettingResto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiPlatform(
-      androidStyle: _androidStyle,
-      iosStyle: _iosStyle,
+      androidStyle: _buildAndroid,
+      iosStyle: _buildIos,
     );
   }
 }

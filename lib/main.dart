@@ -1,14 +1,32 @@
+import 'dart:io';
+
+import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
+import 'package:app_restoran/common/navigation.dart';
 import 'package:app_restoran/data/api/api_resto.dart';
 import 'package:app_restoran/ui/search_resto_page.dart';
+import 'package:app_restoran/utils/background_service.dart';
+import 'package:app_restoran/utils/notification_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:app_restoran/common/styles.dart';
 import 'package:app_restoran/ui/detail_resto.dart';
 import 'package:app_restoran/ui/home_resto.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 import 'provider/provider_resto.dart';
 import 'provider/provider_searchresto.dart';
 
-void main() {
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final NotificationHelper _notificationHelper = NotificationHelper();
+  final BackgroundService _service = BackgroundService();
+  _service.initializeIsolate();
+  if (Platform.isAndroid) {
+    await AndroidAlarmManager.initialize();
+  }
+  await _notificationHelper.initNotifications(flutterLocalNotificationsPlugin);
   runApp(const MyApp());
 }
 
@@ -53,6 +71,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
+        navigatorKey: navigatorKey,
         initialRoute: HomeResto.routeName,
         routes: {
           HomeResto.routeName: (context) => const HomeResto(),

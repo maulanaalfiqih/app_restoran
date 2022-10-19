@@ -3,6 +3,8 @@ import 'package:app_restoran/data/model/resto.dart';
 import 'package:app_restoran/ui/detail_resto.dart';
 import 'package:flutter/material.dart';
 
+import '../common/navigation.dart';
+
 class CardResto extends StatelessWidget {
   final Restaurant resto;
 
@@ -30,8 +32,7 @@ class CardResto extends StatelessWidget {
                   '${resto.rating}'
               .toString(),
         ),
-        onTap: () => Navigator.pushNamed(context, DetailResto.routeName,
-            arguments: resto.id),
+        onTap: () => Navigation.intentWithData(DetailResto.routeName, resto.id),
       ),
     );
   }
