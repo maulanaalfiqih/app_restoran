@@ -29,15 +29,10 @@ class _HomeRestoState extends State<HomeResto> {
   static const String _headlineText = 'Resto Onlen';
 
   final List<Widget> _listWidget = [
-    ChangeNotifierProvider<RestaurantProvider>(
-      create: (_) => RestaurantProvider(apiService: ApiResto()),
-      child: const ListResto(),
-    ),
-    ChangeNotifierProvider<SchedulingProvider>(
-      create: (_) => SchedulingProvider(),
-      child: const SettingsResto(),
-    ),
+    const ListResto(),
+    const SettingsResto(),
     const SearchRestoPage(),
+    //const FavoriteRestoPage(),
   ];
 
   final List<BottomNavigationBarItem> _bottomNavBarItems = [
