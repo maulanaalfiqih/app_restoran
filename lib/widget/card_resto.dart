@@ -1,9 +1,10 @@
-import 'package:app_restoran/common/styles.dart';
 import 'package:app_restoran/data/model/resto.dart';
 import 'package:app_restoran/ui/detail_resto.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../common/navigation.dart';
+import '../provider/provider_database.dart';
 
 class CardResto extends StatelessWidget {
   final Restaurant resto;
@@ -12,28 +13,49 @@ class CardResto extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: primaryColor,
-      child: ListTile(
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-        leading: Hero(
-          tag:
-              "https://restaurant-api.dicoding.dev/images/small/${resto.pictureId}",
-          child: Image.network(
-            "https://restaurant-api.dicoding.dev/images/small/${resto.pictureId}",
-            width: 100,
-          ),
-        ),
-        title: Text(resto.name),
-        subtitle: Text(
-          '${resto.city}'
-                  '\n'
-                  '${resto.rating}'
-              .toString(),
-        ),
-        onTap: () => Navigation.intentWithData(DetailResto.routeName, resto.id),
-      ),
+    return Consumer<DatabaseProvider>(
+      builder: (context, provider, child) {
+        return FutureBuilder<bool>(
+          future: provider.isFavorited(resto.id),
+          builder: (context, snapshot) {
+            var isFavorited = snapshot.data ?? false;
+            return Material(
+              child: ListTile(
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                leading: Hero(
+                  tag:
+                      "https://restaurant-api.dicoding.dev/images/small/${resto.pictureId}",
+                  child: Image.network(
+                    "https://restaurant-api.dicoding.dev/images/small/${resto.pictureId}",
+                    width: 100,
+                  ),
+                ),
+                title: Text(resto.name),
+                subtitle: Text(
+                  '${resto.city}'
+                          '\n'
+                          '${resto.rating}'
+                      .toString(),
+                ),
+                trailing: isFavorited
+                    ? IconButton(
+                        icon: const Icon(Icons.favorite),
+                        color: Theme.of(context).colorScheme.secondary,
+                        onPressed: () => provider.removeFavorite(resto.id),
+                      )
+                    : IconButton(
+                        icon: const Icon(Icons.favorite_border),
+                        color: Theme.of(context).colorScheme.secondary,
+                        onPressed: () => provider.addFavorite(resto),
+                      ),
+                onTap: () =>
+                    Navigation.intentWithData(DetailResto.routeName, resto.id),
+              ),
+            );
+          },
+        );
+      },
     );
   }
 }

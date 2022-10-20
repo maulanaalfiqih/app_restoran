@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:app_restoran/common/navigation.dart';
 import 'package:app_restoran/data/api/api_resto.dart';
+import 'package:app_restoran/data/db/database_helper.dart';
+import 'package:app_restoran/provider/provider_database.dart';
 import 'package:app_restoran/provider/provider_preferences.dart';
 import 'package:app_restoran/provider/provider_scheduling_resto.dart';
 import 'package:app_restoran/ui/search_resto_page.dart';
@@ -10,7 +12,6 @@ import 'package:app_restoran/utils/background_service.dart';
 import 'package:app_restoran/utils/notification_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:app_restoran/common/styles.dart';
 import 'package:app_restoran/ui/detail_resto.dart';
 import 'package:app_restoran/ui/home_resto.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -60,6 +61,11 @@ class MyApp extends StatelessWidget {
               preferencesHelper: PreferencesHelper(
                 sharedPreferences: SharedPreferences.getInstance(),
               ),
+            ),
+          ),
+          ChangeNotifierProvider<DatabaseProvider>(
+            create: (_) => DatabaseProvider(
+              databaseHelper: DatabaseHelper(),
             ),
           ),
         ],
