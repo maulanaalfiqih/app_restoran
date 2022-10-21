@@ -2,6 +2,8 @@ import 'dart:io';
 import 'package:app_restoran/common/styles.dart';
 import 'package:app_restoran/data/api/api_resto.dart';
 import 'package:app_restoran/provider/provider_resto.dart';
+import 'package:app_restoran/ui/detail_resto.dart';
+import 'package:app_restoran/utils/notification_helper.dart';
 import 'package:app_restoran/widget/multi_platform.dart';
 import 'package:app_restoran/ui/list_resto.dart';
 import 'package:app_restoran/ui/search_resto_page.dart';
@@ -9,6 +11,8 @@ import 'package:app_restoran/ui/setting_resto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
+
+import '../provider/provider_scheduling_resto.dart';
 
 class HomeResto extends StatefulWidget {
   static const routeName = '/home_resto';
@@ -20,6 +24,7 @@ class HomeResto extends StatefulWidget {
 }
 
 class _HomeRestoState extends State<HomeResto> {
+  final NotificationHelper _notificationHelper = NotificationHelper();
   int _bottomNavIndex = 0;
   static const String _headlineText = 'Resto Onlen';
 
@@ -28,7 +33,10 @@ class _HomeRestoState extends State<HomeResto> {
       create: (_) => RestaurantProvider(apiService: ApiResto()),
       child: const ListResto(),
     ),
-    const SettingResto(),
+    ChangeNotifierProvider<SchedulingProvider>(
+      create: (_) => SchedulingProvider(),
+      child: const SettingsResto(),
+    ),
     const SearchRestoPage(),
   ];
 
@@ -40,7 +48,7 @@ class _HomeRestoState extends State<HomeResto> {
     ),
     BottomNavigationBarItem(
       icon: Icon(Platform.isIOS ? CupertinoIcons.settings : Icons.settings),
-      label: SettingResto.settingTitle,
+      label: SettingsResto.settingsTitle,
     ),
     BottomNavigationBarItem(
       icon: Icon(Platform.isIOS ? CupertinoIcons.info : Icons.search),
@@ -76,6 +84,19 @@ class _HomeRestoState extends State<HomeResto> {
         return _listWidget[index];
       },
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _notificationHelper
+        .configureSelectNotificationSubject(DetailResto.routeName);
+  }
+
+  @override
+  void dispose() {
+    selectNotificationSubject.close();
+    super.dispose();
   }
 
   @override
