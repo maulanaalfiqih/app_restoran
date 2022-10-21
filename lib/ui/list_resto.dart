@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:app_restoran/widget/multi_platform.dart';
 import 'package:provider/provider.dart';
+import 'package:app_restoran/utils/result_state.dart';
 
 class ListResto extends StatelessWidget {
   const ListResto({Key? key}) : super(key: key);
