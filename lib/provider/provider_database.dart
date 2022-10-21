@@ -21,7 +21,7 @@ class DatabaseProvider extends ChangeNotifier {
 
   void _getFavorite() async {
     _favorite = await databaseHelper.getFavorite();
-    if (_favorite.length > 0) {
+    if (_favorite.isNotEmpty) {
       _state = ResultState.hasData;
     } else {
       _state = ResultState.noData;

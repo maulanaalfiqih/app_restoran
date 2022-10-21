@@ -46,6 +46,11 @@ class _HomeRestoState extends State<HomeResto> {
       icon: Icon(Platform.isIOS ? CupertinoIcons.info : Icons.search),
       label: SearchRestoPage.searchTitle,
     ),
+    BottomNavigationBarItem(
+      icon: Icon(
+          Platform.isIOS ? CupertinoIcons.square_favorites : Icons.favorite),
+      label: FavoriteRestoPage.favoriteTitle,
+    ),
   ];
 
   void _onBottomNavTapped(int index) {
