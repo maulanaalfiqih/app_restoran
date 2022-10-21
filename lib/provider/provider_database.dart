@@ -25,7 +25,7 @@ class DatabaseProvider extends ChangeNotifier {
       _state = ResultState.hasData;
     } else {
       _state = ResultState.noData;
-      _message = 'Empty Data';
+      _message = 'Wah Kosong! Yuk Tambah Resto Favorit!';
     }
     notifyListeners();
   }

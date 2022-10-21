@@ -1,3 +1,4 @@
+import 'package:app_restoran/common/styles.dart';
 import 'package:app_restoran/provider/provider_resto.dart';
 import 'package:app_restoran/widget/card_resto.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ class ListResto extends StatelessWidget {
         if (state.state == ResultState.loading) {
           return const Center(
             child: CircularProgressIndicator(
-              color: Color.fromARGB(255, 56, 82, 155),
+              color: secondaryColor,
             ),
           );
         } else if (state.state == ResultState.hasData) {

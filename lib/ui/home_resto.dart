@@ -21,9 +21,10 @@ class HomeResto extends StatefulWidget {
 }
 
 class _HomeRestoState extends State<HomeResto> {
-  final NotificationHelper _notificationHelper = NotificationHelper();
   int _bottomNavIndex = 0;
   static const String _headlineText = 'Resto Onlen';
+
+  final NotificationHelper _notificationHelper = NotificationHelper();
 
   final List<Widget> _listWidget = [
     const ListResto(),
