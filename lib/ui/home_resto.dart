@@ -1,7 +1,5 @@
 import 'dart:io';
 import 'package:app_restoran/common/styles.dart';
-import 'package:app_restoran/data/api/api_resto.dart';
-import 'package:app_restoran/provider/provider_resto.dart';
 import 'package:app_restoran/ui/detail_resto.dart';
 import 'package:app_restoran/utils/notification_helper.dart';
 import 'package:app_restoran/widget/multi_platform.dart';
@@ -10,9 +8,8 @@ import 'package:app_restoran/ui/search_resto_page.dart';
 import 'package:app_restoran/ui/setting_resto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:provider/provider.dart';
 
-import '../provider/provider_scheduling_resto.dart';
+import 'favorite_resto.dart';
 
 class HomeResto extends StatefulWidget {
   static const routeName = '/home_resto';
@@ -29,15 +26,10 @@ class _HomeRestoState extends State<HomeResto> {
   static const String _headlineText = 'Resto Onlen';
 
   final List<Widget> _listWidget = [
-    ChangeNotifierProvider<RestaurantProvider>(
-      create: (_) => RestaurantProvider(apiService: ApiResto()),
-      child: const ListResto(),
-    ),
-    ChangeNotifierProvider<SchedulingProvider>(
-      create: (_) => SchedulingProvider(),
-      child: const SettingsResto(),
-    ),
+    const ListResto(),
+    const SettingsResto(),
     const SearchRestoPage(),
+    const FavoriteRestoPage(),
   ];
 
   final List<BottomNavigationBarItem> _bottomNavBarItems = [
@@ -53,6 +45,11 @@ class _HomeRestoState extends State<HomeResto> {
     BottomNavigationBarItem(
       icon: Icon(Platform.isIOS ? CupertinoIcons.info : Icons.search),
       label: SearchRestoPage.searchTitle,
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(
+          Platform.isIOS ? CupertinoIcons.square_favorites : Icons.favorite),
+      label: FavoriteRestoPage.favoriteTitle,
     ),
   ];
 

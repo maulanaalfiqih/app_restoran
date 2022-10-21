@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 const Color primaryColor = Color.fromARGB(181, 255, 255, 255);
 const Color secondaryColor = Color.fromARGB(255, 56, 82, 155);
+const Color darkPrimaryColor = Color(0xFF000000);
+const Color darkSecondaryColor = Color.fromARGB(255, 179, 6, 49);
 
 final TextTheme myTextTheme = TextTheme(
   headline1: GoogleFonts.quicksand(
@@ -29,4 +31,51 @@ final TextTheme myTextTheme = TextTheme(
       fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 0.4),
   overline: GoogleFonts.poppins(
       fontSize: 10, fontWeight: FontWeight.w400, letterSpacing: 1.5),
+);
+
+final ThemeData lightTheme = ThemeData(
+  colorScheme: ThemeData.light().colorScheme.copyWith(
+        primary: primaryColor,
+        secondary: secondaryColor,
+        onPrimary: Colors.black,
+      ),
+  scaffoldBackgroundColor: Colors.white,
+  visualDensity: VisualDensity.adaptivePlatformDensity,
+  textTheme: myTextTheme,
+  appBarTheme: const AppBarTheme(elevation: 0),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      foregroundColor: primaryColor,
+      backgroundColor: secondaryColor,
+      textStyle: const TextStyle(),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(0),
+        ),
+      ),
+    ),
+  ),
+);
+
+final ThemeData darkTheme = ThemeData(
+  colorScheme: ThemeData.dark().colorScheme.copyWith(
+        primary: darkPrimaryColor,
+        secondary: darkSecondaryColor,
+        onPrimary: Colors.black,
+      ),
+  visualDensity: VisualDensity.adaptivePlatformDensity,
+  textTheme: myTextTheme,
+  appBarTheme: const AppBarTheme(elevation: 0),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      foregroundColor: darkPrimaryColor,
+      backgroundColor: darkSecondaryColor,
+      textStyle: const TextStyle(),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(0),
+        ),
+      ),
+    ),
+  ),
 );
