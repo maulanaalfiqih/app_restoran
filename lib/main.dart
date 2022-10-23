@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:app_restoran/ui/detail_resto.dart';
 import 'package:app_restoran/ui/home_resto.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'data/preferences/preferences_helper.dart';
@@ -45,7 +46,7 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider<RestaurantProvider>(
             create: (_) => RestaurantProvider(
-              apiService: ApiResto(),
+              apiService: ApiResto(Client),
             ),
           ),
           ChangeNotifierProvider<SearchProvider>(
