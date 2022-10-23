@@ -3,6 +3,7 @@ import 'dart:isolate';
 import 'package:app_restoran/data/api/api_resto.dart';
 import 'package:app_restoran/main.dart';
 import 'package:app_restoran/utils/notification_helper.dart';
+import 'package:http/http.dart';
 
 final ReceivePort port = ReceivePort();
 
@@ -27,7 +28,7 @@ class BackgroundService {
   static Future<void> callback() async {
     print('Alarm fired!');
     final NotificationHelper notificationHelper = NotificationHelper();
-    var result = await ApiResto().daftarResto();
+    var result = await ApiResto(Client()).daftarResto();
     await notificationHelper.showNotification(
         flutterLocalNotificationsPlugin, result);
 
