@@ -1,5 +1,6 @@
 import 'package:app_restoran/common/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:app_restoran/provider/provider_detailresto.dart';
@@ -18,7 +19,8 @@ class DetailResto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<DetailRestoProvider>(
-      create: (_) => DetailRestoProvider(apiService: ApiResto(), id: id),
+      create: (_) =>
+          DetailRestoProvider(apiService: ApiResto(Client()), id: id),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Resto Onlen'),

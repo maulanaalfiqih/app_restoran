@@ -46,12 +46,12 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider<RestaurantProvider>(
             create: (_) => RestaurantProvider(
-              apiService: ApiResto(Client),
+              apiService: ApiResto(Client()),
             ),
           ),
           ChangeNotifierProvider<SearchProvider>(
             create: (_) => SearchProvider(
-              apiService: ApiResto(),
+              apiService: ApiResto(Client()),
             ),
           ),
           ChangeNotifierProvider<SchedulingProvider>(
