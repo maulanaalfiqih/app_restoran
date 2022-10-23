@@ -1,5 +1,5 @@
 import 'package:app_restoran/data/model/resto.dart';
-import 'package:app_restoran/provider/provider_resto.dart';
+import 'package:app_restoran/utils/result_state.dart';
 import 'package:flutter/material.dart';
 import '../data/db/database_helper.dart';
 
@@ -25,7 +25,7 @@ class DatabaseProvider extends ChangeNotifier {
       _state = ResultState.hasData;
     } else {
       _state = ResultState.noData;
-      _message = 'Empty Data';
+      _message = 'Wah Kosong! Yuk Tambah Resto Favorit!';
     }
     notifyListeners();
   }

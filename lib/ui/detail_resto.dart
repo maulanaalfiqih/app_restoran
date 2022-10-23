@@ -1,3 +1,4 @@
+import 'package:app_restoran/common/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -28,7 +29,7 @@ class DetailResto extends StatelessWidget {
               if (state.state == ResultState.loading) {
                 return const Center(
                     child: CircularProgressIndicator(
-                  color: Color.fromARGB(255, 56, 82, 155),
+                  color: secondaryColor,
                 ));
               } else if (state.state == ResultState.hasData) {
                 return SingleChildScrollView(
@@ -46,14 +47,14 @@ class DetailResto extends StatelessWidget {
                               style: Theme.of(context).textTheme.headline6,
                             ),
                             const Divider(
-                              color: Color.fromARGB(255, 56, 82, 155),
+                              color: secondaryColor,
                             ),
                             Text(
                               state.result.restaurant.description,
                               style: Theme.of(context).textTheme.bodyText2,
                             ),
                             const Divider(
-                              color: Color.fromARGB(255, 56, 82, 155),
+                              color: secondaryColor,
                             ),
                             Text("Kategori : ",
                                 style: Theme.of(context).textTheme.headline5),
@@ -68,14 +69,17 @@ class DetailResto extends StatelessWidget {
                               },
                             ),
                             const Divider(
-                              color: Color.fromARGB(255, 56, 82, 155),
+                              color: secondaryColor,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Column(
                                   children: [
-                                    const Icon(Icons.location_city),
+                                    const Icon(
+                                      Icons.location_city,
+                                      color: secondaryColor,
+                                    ),
                                     Text(
                                       state.result.restaurant.city,
                                       style:
@@ -85,7 +89,10 @@ class DetailResto extends StatelessWidget {
                                 ),
                                 Column(
                                   children: [
-                                    const Icon(Icons.star),
+                                    const Icon(
+                                      Icons.star,
+                                      color: secondaryColor,
+                                    ),
                                     Text(
                                       state.result.restaurant.rating.toString(),
                                       style:
@@ -96,7 +103,7 @@ class DetailResto extends StatelessWidget {
                               ],
                             ),
                             const Divider(
-                              color: Color.fromARGB(255, 56, 82, 155),
+                              color: secondaryColor,
                             ),
                             const Text("Menu Makanan : "),
                             ListView.builder(
@@ -115,7 +122,7 @@ class DetailResto extends StatelessWidget {
                               },
                             ),
                             const Divider(
-                              color: Color.fromARGB(255, 56, 82, 155),
+                              color: secondaryColor,
                             ),
                             const Text("Menu Minuman : "),
                             ListView.builder(
@@ -134,12 +141,12 @@ class DetailResto extends StatelessWidget {
                               },
                             ),
                             const Divider(
-                              color: Color.fromARGB(255, 56, 82, 155),
+                              color: secondaryColor,
                             ),
                             Text("Apa Kata Mereka : ",
                                 style: Theme.of(context).textTheme.headline5),
                             const Divider(
-                              color: Color.fromARGB(255, 56, 82, 155),
+                              color: secondaryColor,
                             ),
                             GridView.builder(
                                 physics: const NeverScrollableScrollPhysics(),

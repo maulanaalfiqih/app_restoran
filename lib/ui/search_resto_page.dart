@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:app_restoran/common/styles.dart';
 import 'package:app_restoran/provider/provider_searchresto.dart';
 import 'package:app_restoran/widget/search_resto_widget.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -105,7 +106,7 @@ class _SearchRestoPageState extends State<SearchRestoPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
                     CircularProgressIndicator(
-                      color: Color.fromARGB(255, 56, 82, 155),
+                      color: secondaryColor,
                     ),
                     SizedBox(
                       height: 10,
@@ -129,7 +130,7 @@ class _SearchRestoPageState extends State<SearchRestoPage> {
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontSize: 20,
-                    color: Color.fromARGB(255, 56, 82, 155),
+                    color: secondaryColor,
                   ),
                 ),
               );
@@ -140,7 +141,7 @@ class _SearchRestoPageState extends State<SearchRestoPage> {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20,
-                    color: Color.fromARGB(255, 56, 82, 155),
+                    color: secondaryColor,
                   ),
                 ),
               );

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:app_restoran/common/styles.dart';
 import 'package:app_restoran/widget/multi_platform.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -41,6 +42,7 @@ class SettingsResto extends StatelessWidget {
               child: ListTile(
                 title: const Text('Dark Theme'),
                 trailing: Switch.adaptive(
+                  activeColor: secondaryColor,
                   value: provider.isDarkTheme,
                   onChanged: (value) {
                     provider.enableDarkTheme(value);
@@ -54,6 +56,7 @@ class SettingsResto extends StatelessWidget {
                 trailing: Consumer<SchedulingProvider>(
                   builder: (context, scheduled, _) {
                     return Switch.adaptive(
+                      activeColor: secondaryColor,
                       value: provider.isDailyRestoActive,
                       onChanged: (value) async {
                         if (Platform.isIOS) {

@@ -1,9 +1,11 @@
+import 'package:app_restoran/common/styles.dart';
 import 'package:app_restoran/provider/provider_resto.dart';
 import 'package:app_restoran/widget/card_resto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:app_restoran/widget/multi_platform.dart';
 import 'package:provider/provider.dart';
+import 'package:app_restoran/utils/result_state.dart';
 
 class ListResto extends StatelessWidget {
   const ListResto({Key? key}) : super(key: key);
@@ -14,7 +16,7 @@ class ListResto extends StatelessWidget {
         if (state.state == ResultState.loading) {
           return const Center(
             child: CircularProgressIndicator(
-              color: Color.fromARGB(255, 56, 82, 155),
+              color: secondaryColor,
             ),
           );
         } else if (state.state == ResultState.hasData) {
