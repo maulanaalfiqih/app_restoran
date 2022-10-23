@@ -1,12 +1,15 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:http/http.dart' show Client;
 import 'package:app_restoran/data/model/resto.dart';
 
 class ApiResto {
+  final Client client;
+  ApiResto(this.client);
+
   Future<RestoResult> daftarResto() async {
     final response =
-        await http.get(Uri.parse('https://restaurant-api.dicoding.dev/list'));
+        await client.get(Uri.parse('https://restaurant-api.dicoding.dev/list'));
     if (response.statusCode == 200) {
       return RestoResult.fromJson(json.decode(response.body));
     } else {
@@ -15,7 +18,7 @@ class ApiResto {
   }
 
   Future<DetailRestaurant> detailMenu(String id) async {
-    final response = await http
+    final response = await client
         .get(Uri.parse('https://restaurant-api.dicoding.dev/detail/$id'));
     if (response.statusCode == 200) {
       return DetailRestaurant.fromJson(json.decode(response.body));
@@ -25,7 +28,7 @@ class ApiResto {
   }
 
   Future<SearchResto> searchRestaurant(query) async {
-    final response = await http
+    final response = await client
         .get(Uri.parse('https://restaurant-api.dicoding.dev/search?q=$query'));
 
     if (response.statusCode == 200) {
