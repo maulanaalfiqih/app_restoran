@@ -32,7 +32,7 @@ class DatabaseProvider extends ChangeNotifier {
 
   void addFavorite(Restaurant resto) async {
     try {
-      await databaseHelper.insertFavorite(resto);
+      await databaseHelper.addFavorite(resto);
       _getFavorite();
     } catch (e) {
       _state = ResultState.error;
@@ -52,7 +52,7 @@ class DatabaseProvider extends ChangeNotifier {
       _getFavorite();
     } catch (e) {
       _state = ResultState.error;
-      _message = 'Error: $e';
+      _message = 'Gagal Menghapus Data';
       notifyListeners();
     }
   }
