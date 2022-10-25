@@ -52,10 +52,12 @@ class SearchWidget extends StatelessWidget {
                 trailing: isFavorited
                     ? IconButton(
                         icon: const Icon(Icons.favorite),
+                        color: Theme.of(context).colorScheme.secondary,
                         onPressed: () => provider.removeFavorite(restoFound.id),
                       )
                     : IconButton(
                         icon: const Icon(Icons.favorite_border),
+                        color: Theme.of(context).colorScheme.secondary,
                         onPressed: () => provider.addFavorite(restoFound),
                       ),
                 onTap: () => Navigator.pushNamed(context, DetailResto.routeName,

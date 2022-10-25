@@ -65,7 +65,6 @@ class _HomeRestoState extends State<HomeResto> {
       body: _listWidget[_bottomNavIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: secondaryColor,
         currentIndex: _bottomNavIndex,
         items: _bottomNavBarItems,
         onTap: _onBottomNavTapped,

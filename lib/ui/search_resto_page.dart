@@ -74,23 +74,27 @@ class _SearchRestoPageState extends State<SearchRestoPage> {
     if (_connectionStatus != ConnectivityResult.none) {
       return Scaffold(
         appBar: AppBar(
-          leading: const Icon(Icons.search),
+          leading: const Icon(
+            Icons.search,
+          ),
           title: Consumer<SearchProvider>(
             builder: (context, state, _) => TextField(
               controller: textEditingController,
               autofocus: true,
               decoration: const InputDecoration(
-                hintText: 'Cari resto',
+                hintText: 'Cari restoran disini..',
                 hintStyle: TextStyle(
-                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
                 ),
                 enabledBorder: InputBorder.none,
                 focusedBorder: InputBorder.none,
               ),
               style: const TextStyle(
-                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
               ),
-              cursorColor: Colors.black,
+              cursorColor: Colors.white,
               onChanged: (value) {
                 Provider.of<SearchProvider>(context, listen: false)
                     .restoSearch(value);
@@ -111,7 +115,11 @@ class _SearchRestoPageState extends State<SearchRestoPage> {
                     SizedBox(
                       height: 10,
                     ),
-                    Text('Mencari resto.....'),
+                    Text(
+                      'Mencari resto.....',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                    ),
                   ],
                 ),
               );
@@ -130,7 +138,6 @@ class _SearchRestoPageState extends State<SearchRestoPage> {
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontSize: 20,
-                    color: secondaryColor,
                   ),
                 ),
               );
@@ -140,8 +147,8 @@ class _SearchRestoPageState extends State<SearchRestoPage> {
                   'Cari Resto Mu..',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 20,
-                    color: secondaryColor,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               );

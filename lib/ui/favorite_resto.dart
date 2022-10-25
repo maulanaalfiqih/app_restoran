@@ -43,7 +43,11 @@ class FavoriteRestoPage extends StatelessWidget {
         } else {
           return Center(
             child: Material(
-              child: Text(provider.message),
+              child: Text(
+                provider.message,
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
             ),
           );
         }
