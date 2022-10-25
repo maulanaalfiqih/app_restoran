@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:app_restoran/data/model/resto.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -31,14 +32,16 @@ class NotificationHelper {
     var initializationSettings = InitializationSettings(
         android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
 
-    await flutterLocalNotificationsPlugin.initialize(initializationSettings,
-        onDidReceiveNotificationResponse: (NotificationResponse details) async {
-      final payload = details.payload;
-      if (payload != null) {
-        print('notification payload: ' + payload);
-      }
-      selectNotificationSubject.add(payload ?? 'empty payload');
-    });
+    await flutterLocalNotificationsPlugin.initialize(
+      initializationSettings,
+      onDidReceiveNotificationResponse: (NotificationResponse details) async {
+        final payload = details.payload;
+        if (payload != null) {
+          print('notification payload: ' + payload);
+        }
+        selectNotificationSubject.add(payload ?? 'empty payload');
+      },
+    );
   }
 
   Future<void> showNotification(
@@ -47,14 +50,17 @@ class NotificationHelper {
     var channelId = "1";
     var channelName = "channel_01";
     var channelDescription = "app resto onlen";
+    final _random = Random();
 
     var androidPlatformChannelSpecifics = AndroidNotificationDetails(
-        channelId, channelName,
-        channelDescription: channelDescription,
-        importance: Importance.max,
-        priority: Priority.high,
-        ticker: 'ticker',
-        styleInformation: const DefaultStyleInformation(true, true));
+      channelId,
+      channelName,
+      channelDescription: channelDescription,
+      importance: Importance.max,
+      priority: Priority.high,
+      ticker: 'ticker',
+      styleInformation: const DefaultStyleInformation(true, true),
+    );
 
     var iOSPlatformChannelSpecifics = const DarwinNotificationDetails();
     var platformChannelSpecifics = NotificationDetails(
@@ -62,11 +68,19 @@ class NotificationHelper {
         iOS: iOSPlatformChannelSpecifics);
 
     var titleNotification = "<b>Resto Yang Lagi Hype</b>";
-    var nameResto = restos.restaurants[0].name;
+    var dataResto = restos.restaurants;
+    var randomNumber = _random.nextInt(dataResto.length);
+    var nameResto = dataResto[randomNumber].name;
 
     await flutterLocalNotificationsPlugin.show(
-        0, titleNotification, nameResto, platformChannelSpecifics,
-        payload: json.encode(restos.toJson()));
+      0,
+      titleNotification,
+      nameResto,
+      platformChannelSpecifics,
+      payload: json.encode(
+        dataResto[randomNumber].toJson(),
+      ),
+    );
   }
 
   void configureSelectNotificationSubject(String route) {

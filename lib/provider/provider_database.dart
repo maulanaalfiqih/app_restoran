@@ -1,7 +1,7 @@
 import 'package:app_restoran/data/model/resto.dart';
 import 'package:app_restoran/utils/result_state.dart';
 import 'package:flutter/material.dart';
-import '../data/db/database_helper.dart';
+import 'package:app_restoran/data/db/database_helper.dart';
 
 class DatabaseProvider extends ChangeNotifier {
   final DatabaseHelper databaseHelper;
