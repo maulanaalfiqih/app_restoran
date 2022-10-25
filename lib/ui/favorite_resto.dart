@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 import '../provider/provider_database.dart';
 
 class FavoriteRestoPage extends StatelessWidget {
-  static const String favoriteTitle = 'Resto Favorite';
+  static const String favoriteTitle = 'Favorite';
 
   const FavoriteRestoPage({Key? key}) : super(key: key);
 
@@ -43,7 +43,11 @@ class FavoriteRestoPage extends StatelessWidget {
         } else {
           return Center(
             child: Material(
-              child: Text(provider.message),
+              child: Text(
+                provider.message,
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
             ),
           );
         }

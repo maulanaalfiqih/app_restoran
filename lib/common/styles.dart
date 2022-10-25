@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-const Color primaryColor = Color.fromARGB(181, 255, 255, 255);
-const Color secondaryColor = Color.fromARGB(255, 56, 82, 155);
+const Color primaryColor = Color.fromARGB(253, 21, 207, 231);
+const Color secondaryColor = Color.fromARGB(255, 179, 32, 6);
 const Color darkPrimaryColor = Color(0xFF000000);
-const Color darkSecondaryColor = Color.fromARGB(255, 179, 6, 49);
+const Color darkSecondaryColor = Color.fromARGB(255, 179, 32, 6);
 
 final TextTheme myTextTheme = TextTheme(
   headline1: GoogleFonts.quicksand(
@@ -39,7 +39,6 @@ final ThemeData lightTheme = ThemeData(
         secondary: secondaryColor,
         onPrimary: Colors.black,
       ),
-  scaffoldBackgroundColor: Colors.white,
   visualDensity: VisualDensity.adaptivePlatformDensity,
   textTheme: myTextTheme,
   appBarTheme: const AppBarTheme(elevation: 0),

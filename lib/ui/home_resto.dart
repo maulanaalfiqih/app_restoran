@@ -22,7 +22,7 @@ class HomeResto extends StatefulWidget {
 
 class _HomeRestoState extends State<HomeResto> {
   int _bottomNavIndex = 0;
-  static const String _headlineText = 'Resto Onlen';
+  static const String _headlineText = 'Home';
 
   final NotificationHelper _notificationHelper = NotificationHelper();
 
@@ -64,7 +64,7 @@ class _HomeRestoState extends State<HomeResto> {
     return Scaffold(
       body: _listWidget[_bottomNavIndex],
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: secondaryColor,
+        type: BottomNavigationBarType.fixed,
         currentIndex: _bottomNavIndex,
         items: _bottomNavBarItems,
         onTap: _onBottomNavTapped,
