@@ -40,7 +40,7 @@ class DatabaseHelper {
     return _database;
   }
 
-  Future<void> insertFavorite(Restaurant resto) async {
+  Future<void> addFavorite(Restaurant resto) async {
     final db = await database;
     await db!.insert(_tblFavorite, resto.toJson());
   }
