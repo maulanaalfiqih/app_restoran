@@ -2,9 +2,8 @@ import 'package:app_restoran/data/model/resto.dart';
 import 'package:app_restoran/ui/detail_resto.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../common/navigation.dart';
-import '../provider/provider_database.dart';
+import 'package:app_restoran/common/navigation.dart';
+import 'package:app_restoran/provider/provider_database.dart';
 
 class CardResto extends StatelessWidget {
   final Restaurant resto;
@@ -24,8 +23,7 @@ class CardResto extends StatelessWidget {
                 contentPadding:
                     const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 leading: Hero(
-                  tag:
-                      "https://restaurant-api.dicoding.dev/images/small/${resto.pictureId}",
+                  tag: resto.id,
                   child: Image.network(
                     "https://restaurant-api.dicoding.dev/images/small/${resto.pictureId}",
                     width: 100,

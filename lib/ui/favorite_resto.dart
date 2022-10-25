@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 import '../provider/provider_database.dart';
 
 class FavoriteRestoPage extends StatelessWidget {
-  static const String favoriteTitle = 'Resto Favorite';
+  static const String favoriteTitle = 'Favorite';
 
   const FavoriteRestoPage({Key? key}) : super(key: key);
 
